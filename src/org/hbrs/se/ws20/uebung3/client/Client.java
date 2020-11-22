@@ -1,0 +1,38 @@
+package org.hbrs.se.ws20.uebung3.client;
+
+import org.hbrs.se.ws20.uebung3.control.Container;
+import org.hbrs.se.ws20.uebung3.control.ContainerException;
+import org.hbrs.se.ws20.uebung3.control.Member;
+import org.hbrs.se.ws20.uebung3.control.MemberDef;
+import org.hbrs.se.ws20.uebung3.view.MemberView;
+
+public class Client {
+    public static void main(String[] args) {
+        Container container = Container.getInstance();
+        Member x = new MemberDef(1);
+        Member y = new MemberDef(2);
+        Member z = new MemberDef(3);
+
+        try {
+            container.addMember(x);
+            container.addMember(y);
+            container.addMember(z);
+        } catch (ContainerException e) {
+            e.printStackTrace();
+        }
+        Client.display(container);
+
+
+
+    }
+    private static void display(Container container){
+        MemberView.dump(container.getCurrentList());
+    }
+
+
+
+
+}
+
+
+
