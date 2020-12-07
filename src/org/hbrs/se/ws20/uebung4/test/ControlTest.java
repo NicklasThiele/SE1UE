@@ -125,7 +125,7 @@ public class ControlTest {
             container.deleteUserStory(1);
             assertEquals(2 , container.size() );
 
-            container.load();
+            container.load(false);
             assertEquals( 3 , container.size() );
 
         } catch (ContainerException | PersistenceException | IOException e) {

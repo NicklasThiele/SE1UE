@@ -3,7 +3,7 @@ package org.hbrs.se.ws20.uebung4.persistence;
 import java.io.*;
 import java.util.List;
 
-public class PersistenceStrategyStream<Member> implements PersistenceStrategy<Member> {
+public class PersistenceStrategyStream<UserStory> implements PersistenceStrategy<UserStory> {
     private FileOutputStream fos = null;
     private ObjectOutputStream oos = null;
     private FileInputStream fis = null;
@@ -52,13 +52,15 @@ public class PersistenceStrategyStream<Member> implements PersistenceStrategy<Me
     /*
      * Method for saving a list of Member-objects to a disk (HDD)
      */
-    public void save(List<Member> member) throws PersistenceException {
+    public void save(List<UserStory> UserStory) throws PersistenceException {
         this.openConnection();
         try{
             //FileOutputStream fos = new FileOutputStream("file.ser");
             //ObjectOutputStream oos = new ObjectOutputStream(fos);
 
-            oos.writeObject(member);
+            oos.writeObject(UserStory);
+            if(UserStory.size() != 0) System.out.println("Es wurden "+ UserStory.size() +" Objekte gespeichert");
+            if(UserStory.size() == 0) System.out.println("Alle Objekte wurden gelöscht");
            // oos.close();
             //fos.close();
         }
@@ -78,7 +80,7 @@ public class PersistenceStrategyStream<Member> implements PersistenceStrategy<Me
      * Method for loading a list of Member-objects from a disk (HDD)
      * Some coding examples come for free :-)
      */
-    public List<Member> load() throws PersistenceException {
+    public List<UserStory> load() throws PersistenceException {
         // Some Coding hints ;-)
         //ObjectInputStream ois = null;
         //FileInputStream fis = null;
@@ -97,7 +99,7 @@ public class PersistenceStrategyStream<Member> implements PersistenceStrategy<Me
 
          */
         //openConnection();
-        List<Member> newListe = null;
+        List<UserStory> newListe = null;
 
         // Reading and extracting the list (try .. catch ommitted here)
         //Object obj = null;
@@ -113,7 +115,7 @@ public class PersistenceStrategyStream<Member> implements PersistenceStrategy<Me
                 newListe = (List) obj;
             }
             try {
-                System.out.println("LOG: Es wurden " + newListe.size() + " User Stories erfolgreich reingeladen!");
+                System.out.println("LOG: Es wurden " + newListe.size() + " User Stories reingeladen!");
             }
             catch(NullPointerException e){
                 throw new NullPointerException();

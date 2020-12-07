@@ -6,6 +6,7 @@ import org.hbrs.se.ws20.uebung4.persistence.PersistenceStrategy;
 import java.io.EOFException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Container {
@@ -47,7 +48,7 @@ public class Container {
     }
     private boolean contains(UserStory us) { //Hilfsmethode
         for(UserStory x : aList){
-            if(us.compareTo(x) ==1){
+            if(us.getID() == x.getID()){
                 return true;
             }
         }
@@ -62,8 +63,10 @@ public class Container {
         return null;
     }
     public List<UserStory> getCurrentList(){
+
         return aList;
     }
+
     public String deleteUserStory (Integer id) {
         UserStory x = getUserstory(id);
         if(x == null) {
@@ -98,7 +101,25 @@ public class Container {
         this.pss = pss;
     }
 
-    public void load() throws PersistenceException, EOFException {
-        aList = pss.load();
+    public void load(boolean memoryType) throws PersistenceException, EOFException {
+        if (this.pss == null) {
+            throw new PersistenceException(PersistenceException.ExceptionType.NoStrategyIsSet, "Strategy not initialized");
+        }
+        List<UserStory> liste = this.pss.load();
+        if(memoryType) {
+            try {
+                for (UserStory us : liste) {
+                    this.addUserstory(us);
+                }
+            } catch (ContainerException e) {
+                e.printStackTrace();
+            }
+        } else {
+            aList = liste;
+        }
     }
+    public void sortContainer (){
+        Collections.sort(getCurrentList());
+    }
+
 }
