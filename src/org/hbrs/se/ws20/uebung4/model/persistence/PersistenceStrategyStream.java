@@ -1,4 +1,4 @@
-package org.hbrs.se.ws20.uebung4.persistence;
+package org.hbrs.se.ws20.uebung4.model.persistence;
 
 import java.io.*;
 import java.util.List;
@@ -60,7 +60,7 @@ public class PersistenceStrategyStream<UserStory> implements PersistenceStrategy
 
             oos.writeObject(UserStory);
             if(UserStory.size() != 0) System.out.println("Es wurden "+ UserStory.size() +" Objekte gespeichert");
-            if(UserStory.size() == 0) System.out.println("Alle Objekte wurden gelöscht");
+            if(UserStory.size() == 0) System.out.println("Es wurden keine Objekte gespeichert, der Speicher wurde geleert");
            // oos.close();
             //fos.close();
         }
@@ -114,12 +114,8 @@ public class PersistenceStrategyStream<UserStory> implements PersistenceStrategy
             if (obj instanceof List<?>) {
                 newListe = (List) obj;
             }
-            try {
-                System.out.println("LOG: Es wurden " + newListe.size() + " User Stories reingeladen!");
-            }
-            catch(NullPointerException e){
-                throw new NullPointerException();
-            }
+            //System.out.println("LOG: Es wurden " + newListe.size() + " User Stories reingeladen!");
+
             return newListe;
         }
         catch (IOException e){

@@ -1,22 +1,16 @@
-package org.hbrs.se.ws20.uebung4.client;
+package org.hbrs.se.ws20.uebung4.controller;
 
-import org.hbrs.se.ws20.uebung4.persistence.PersistenceStrategyStream;
-import org.hbrs.se.ws20.uebung4.control.Container;
-import org.hbrs.se.ws20.uebung4.control.ContainerException;
-import org.hbrs.se.ws20.uebung4.control.UserStory;
-import org.hbrs.se.ws20.uebung4.persistence.PersistenceException;
-import org.hbrs.se.ws20.uebung4.persistence.PersistenceStrategy;
+import org.hbrs.se.ws20.uebung4.model.Container;
+import org.hbrs.se.ws20.uebung4.model.ContainerException;
+import org.hbrs.se.ws20.uebung4.model.UserStory;
+import org.hbrs.se.ws20.uebung4.model.persistence.PersistenceException;
 import org.hbrs.se.ws20.uebung4.view.AusgabeDialog;
-import org.hbrs.se.ws20.uebung4.view.Main;
 
 import java.io.BufferedReader;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 public class EingabeDialog {
 
@@ -32,7 +26,7 @@ public class EingabeDialog {
         int risiko = 1;
         int strafe = 1;
         double prio = ((double)mehrwert + (double)strafe) / ((double)aufwand + (double)risiko);
-        UserStory us = new UserStory(id,name,aufwand,mehrwert,risiko,strafe);
+        UserStory us;
         String eingabe = null;
         //Container container = Main.container;
         Container container = Container.getInstance();
@@ -60,7 +54,6 @@ public class EingabeDialog {
                     try {
                         System.out.println("Bitte geben sie die ID als Zahl ein:");
                         id = Integer.parseInt(reader.readLine());
-
                         System.out.println("Bitte geben sie den Namen der Userstory ein:");
                         name = reader.readLine();
                         System.out.println("Bitte geben sie einen Wert der Fibonacci-Folge für den Aufwand ein:");
@@ -79,8 +72,10 @@ public class EingabeDialog {
 
                     } catch (IOException e) {
                         e.printStackTrace();
+                        break;
                     } catch (NumberFormatException e) {
                         System.out.println("Falsches Format, starten sie erneut mit enter!");
+                        break;
                     }
 
                     us = new UserStory(id, name, aufwand, mehrwert, risiko, strafe);
@@ -89,6 +84,7 @@ public class EingabeDialog {
                         container.addUserstory(us);
                     } catch (ContainerException e) {
                         e.printStackTrace();
+                        break;
                     }
                     System.out.println("Größe des Containers: " +container.size());
                     //System.out.println(us.toString());
@@ -119,13 +115,14 @@ public class EingabeDialog {
                                 e.printStackTrace();
                                 break;
                             }
-                            System.out.println("Load merge erfolgreich durchgeführt!");
+                            //System.out.println("Load merge erfolgreich durchgeführt!");
                             break;
                         } else if (arrayEingaben[1].equals("force")) { //merge load
 
 
                             try {
                                 container.load(false); //true = merge
+
                             } catch (EOFException e) {
                                 e.printStackTrace();
                                 break;
@@ -133,7 +130,7 @@ public class EingabeDialog {
                                 e.printStackTrace();
                                 break;
                             }
-                            System.out.println("Load force erfolgreich durchgeführt!");
+                            //System.out.println("Load force erfolgreich durchgeführt!");
                             break;
                         } else System.out.println("Es wurde kein gültiger Parameter übergeben");
                     }

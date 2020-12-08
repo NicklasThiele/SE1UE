@@ -2,11 +2,11 @@ package org.hbrs.se.ws20.uebung4.view;
 
 
 
-import org.hbrs.se.ws20.uebung4.client.EingabeDialog;
-import org.hbrs.se.ws20.uebung4.control.Container;
-import org.hbrs.se.ws20.uebung4.control.UserStory;
-import org.hbrs.se.ws20.uebung4.persistence.PersistenceStrategy;
-import org.hbrs.se.ws20.uebung4.persistence.PersistenceStrategyStream;
+import org.hbrs.se.ws20.uebung4.controller.EingabeDialog;
+import org.hbrs.se.ws20.uebung4.model.Container;
+import org.hbrs.se.ws20.uebung4.model.UserStory;
+import org.hbrs.se.ws20.uebung4.model.persistence.PersistenceStrategy;
+import org.hbrs.se.ws20.uebung4.model.persistence.PersistenceStrategyStream;
 
 public class Main {
     public static void main (String[] args) {

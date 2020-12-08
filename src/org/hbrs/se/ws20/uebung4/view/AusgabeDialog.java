@@ -1,7 +1,6 @@
 package org.hbrs.se.ws20.uebung4.view;
 
-import org.hbrs.se.ws20.uebung4.control.Container;
-import org.hbrs.se.ws20.uebung4.control.UserStory;
+import org.hbrs.se.ws20.uebung4.model.Container;
 
 public class AusgabeDialog {
     Container container = Container.getInstance();

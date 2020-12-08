@@ -1,4 +1,4 @@
-package org.hbrs.se.ws20.uebung4.control;
+package org.hbrs.se.ws20.uebung4.model;
 
 import java.io.Serializable;
 

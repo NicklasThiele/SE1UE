@@ -1,7 +1,7 @@
-package org.hbrs.se.ws20.uebung4.control;
+package org.hbrs.se.ws20.uebung4.model;
 
-import org.hbrs.se.ws20.uebung4.persistence.PersistenceException;
-import org.hbrs.se.ws20.uebung4.persistence.PersistenceStrategy;
+import org.hbrs.se.ws20.uebung4.model.persistence.PersistenceException;
+import org.hbrs.se.ws20.uebung4.model.persistence.PersistenceStrategy;
 
 import java.io.EOFException;
 import java.io.IOException;
