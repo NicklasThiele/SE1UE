@@ -107,22 +107,24 @@ public class EingabeDialog {
 
 
                         if (arrayEingaben[1].equals("merge")) { //force load
-
+                            System.out.println("merge geht in if");
 
                             try {
                                 container.load(true); //false = force
+
                             } catch (EOFException | PersistenceException e) {
                                 e.printStackTrace();
                                 break;
                             }
-                            //System.out.println("Load merge erfolgreich durchgeführt!");
+
+                            System.out.println("Load merge für nicht vorhandene Objekte erfolgreich durchgeführt!");
                             break;
                         } else if (arrayEingaben[1].equals("force")) { //merge load
-
+                            System.out.println("force geht in if");
 
                             try {
                                 container.load(false); //true = merge
-
+                                System.out.println("Load force erfolgreich durchgeführt!");
                             } catch (EOFException e) {
                                 e.printStackTrace();
                                 break;
@@ -135,6 +137,7 @@ public class EingabeDialog {
                         } else System.out.println("Es wurde kein gültiger Parameter übergeben");
                     }
                     System.out.println("Schreiben sie ausschließlich 'load force' für force oder 'load merge' für merge");
+                    break;
 
                 case "dump":
                     AusgabeDialog ad = new AusgabeDialog();

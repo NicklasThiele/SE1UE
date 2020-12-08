@@ -10,7 +10,6 @@ public class PersistenceStrategyStream<UserStory> implements PersistenceStrategy
     private ObjectInputStream ois = null;
     private String file = "file.ser";
     //private String file = "file.txt";
-
     public void setFile(String Location){
         file = Location;
     }
@@ -30,10 +29,8 @@ public class PersistenceStrategyStream<UserStory> implements PersistenceStrategy
         catch(IOException e){
             throw new PersistenceException( PersistenceException.ExceptionType.ConnectionNotAvailable
                     , "Error in opening the connection, problems with the stream");
-
         }
     }
-
     @Override
     public void closeConnection() throws PersistenceException {
         try {
@@ -44,8 +41,6 @@ public class PersistenceStrategyStream<UserStory> implements PersistenceStrategy
         } catch (IOException e) {
             throw new PersistenceException(PersistenceException.ExceptionType.ClosingFailure , "error while closing connections");
         }
-
-
     }
 
     @Override
@@ -74,35 +69,15 @@ public class PersistenceStrategyStream<UserStory> implements PersistenceStrategy
             this.closeConnection();
         }
     }
-
     @Override
     /*
      * Method for loading a list of Member-objects from a disk (HDD)
      * Some coding examples come for free :-)
      */
     public List<UserStory> load() throws PersistenceException {
-        // Some Coding hints ;-)
-        //ObjectInputStream ois = null;
-        //FileInputStream fis = null;
-        //List<Member> newListe =  null;
-        //
 
-        // Initiating the Stream (can also be moved to method openConnection()... ;-)
-        /*
-        try {
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-         */
-        //openConnection();
         List<UserStory> newListe = null;
 
-        // Reading and extracting the list (try .. catch ommitted here)
-        //Object obj = null;
         try {
             // Create Streams here instead using "this.openConnection();"
             fis = new FileInputStream("file.ser");
@@ -114,8 +89,6 @@ public class PersistenceStrategyStream<UserStory> implements PersistenceStrategy
             if (obj instanceof List<?>) {
                 newListe = (List) obj;
             }
-            //System.out.println("LOG: Es wurden " + newListe.size() + " User Stories reingeladen!");
-
             return newListe;
         }
         catch (IOException e){
@@ -130,8 +103,6 @@ public class PersistenceStrategyStream<UserStory> implements PersistenceStrategy
         finally {
             this.closeConnection();
         }
-
-
         // and finally close the streams (guess where this could be...?)
 
 
